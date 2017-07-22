@@ -1,0 +1,7 @@
+subdir('gkm')
+subdir('gnome2-store')
+subdir('rpc-layer')
+subdir('secret-store')
+subdir('ssh-store')
+subdir('wrap-layer')
+subdir('xdg-store')

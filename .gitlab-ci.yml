@@ -15,6 +15,14 @@ variables:
     - dbus-uuidgen --ensure
     - useradd user
 
+fedora:meson:
+  extends: .build
+  script:
+    - dnf install -y meson ninja-build
+    - meson _build
+    - eval `dbus-launch --sh-syntax`
+    - ninja -C _build test
+
 fedora:Werror:
   extends: .build
   script:
