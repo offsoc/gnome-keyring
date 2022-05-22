@@ -13,13 +13,10 @@ libgkm_rpc_layer_deps = [
   libgkm_dep,
 ]
 
-libgkm_rpc_layer = library('gkm-rpc-layer-standalone',
-  libgkm_rpc_layer_sources,
-  name_prefix: '',
+libgkm_rpc_layer = static_library('gkm-rpc-layer-standalone',
+  sources: libgkm_rpc_layer_sources,
   dependencies: libgkm_rpc_layer_deps,
   include_directories: config_h_inc,
-  install: true,
-  install_dir: gkr_pkglibdir,
 )
 
 libgkm_rpc_layer_dep = declare_dependency(
