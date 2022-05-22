@@ -10,6 +10,12 @@ option('selinux',
   description: 'Add support for SELinux',
 )
 
+option('systemd',
+  type: 'feature',
+  value: 'enabled',
+  description: 'Add support for systemd socket activation',
+)
+
 option('pam',
   type: 'boolean',
   value: true,

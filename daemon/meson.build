@@ -20,6 +20,7 @@ gkr_daemon_deps = [
   glib_dep,
   gobject_dep,
   libgcrypt_dep,
+  libsystemd_dep,
 
   libegg_dep,
   libgkm_dep,
@@ -64,7 +65,7 @@ foreach desktop_input_file : desktop_input_files
       input: desktop_input_file,
       output: '@BASENAME@',
       configuration: {
-        'bindir': gkr_prefix / get_option('bindir'),
+        'bindir': gkr_bindir,
         'VERSION': meson.project_version(),
       },
     ),
@@ -88,11 +89,27 @@ foreach service_input_file : service_input_files
     input: service_input_file,
     output: '@BASENAME@',
     configuration: {
-      'bindir': gkr_prefix / get_option('bindir'),
+      'bindir': gkr_bindir,
     },
     install_dir: get_option('datadir') / 'dbus-1' / 'services',
   )
 endforeach
+
+if libsystemd_dep.found()
+  configure_file(
+    input: 'gnome-keyring-daemon.service.in',
+    output: '@BASENAME@',
+    configuration: {
+      'bindir': gkr_bindir,
+    },
+    install_dir: systemd_user_unit_dir,
+  )
+
+  install_data(
+    'gnome-keyring-daemon.socket',
+    install_dir: systemd_user_unit_dir,
+  )
+endif
 
 # Portal files
 install_data('gnome-keyring.portal',

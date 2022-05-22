@@ -9,8 +9,8 @@ libpam_gkr_deps = [
   libegg_dep,
 ]
 
-if selinux_dep.found()
-  libpam_gkr_deps += selinux_dep
+if libselinux_dep.found()
+  libpam_gkr_deps += libselinux_dep
 endif
 
 libpam_gkr_cflags = [

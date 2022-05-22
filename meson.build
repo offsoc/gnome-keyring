@@ -33,7 +33,12 @@ libgcrypt_dep = dependency('libgcrypt', version: '>= 1.2.2')
 libcap_ng_dep = dependency('libcap-ng', required: false)
 p11_kit_dep = dependency('p11-kit-1')
 
-selinux_dep = dependency('libselinux', required: get_option('selinux'))
+libselinux_dep = dependency('libselinux', required: get_option('selinux'))
+libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
+
+if libsystemd_dep.found()
+  systemd_user_unit_dir = dependency('systemd').get_variable('systemduserunitdir', pkgconfig_define: ['root_prefix', get_option('prefix')])
+endif
 
 if get_option('ssh-agent')
   ssh_agent_bin = find_program('ssh-agent')
@@ -59,7 +64,8 @@ conf.set_quoted('LOCALE_DIR', gkr_prefix / get_option('localedir'))
 conf.set_quoted('VERSION', meson.project_version())
 conf.set_quoted('LIBGCRYPT_VERSION', libgcrypt_dep.version())
 conf.set('HAVE_LIBCAPNG', libcap_ng_dep.found())
-conf.set('WITH_SELINUX', selinux_dep.found())
+conf.set('WITH_SELINUX', libselinux_dep.found())
+conf.set('WITH_SYSTEMD', libsystemd_dep.found())
 if get_option('ssh-agent')
   conf.set('WITH_SSH', true)
   conf.set_quoted('SSH_AGENT', ssh_agent_bin.full_path())
