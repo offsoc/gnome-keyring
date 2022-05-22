@@ -13,6 +13,7 @@ gkr_major_version = '3'
 cc = meson.get_compiler('c')
 gkr_prefix = get_option('prefix')
 gkr_bindir = gkr_prefix / get_option('bindir')
+gkr_pkglibdir = gkr_prefix / get_option('libdir') / 'gnome-keyring' / 'devel'
 config_h_inc = include_directories('.')
 po_dir = meson.current_source_dir() / 'po'
 source_root = meson.current_source_dir()
@@ -61,8 +62,8 @@ conf.set('HAVE_LIBCAPNG', libcap_ng_dep.found())
 conf.set('WITH_SELINUX', selinux_dep.found())
 if get_option('ssh-agent')
   conf.set('WITH_SSH', true)
-  conf.set_quoted('SSH_AGENT', ssh_agent_bin.path())
-  conf.set_quoted('SSH_ADD', ssh_add_bin.path())
+  conf.set_quoted('SSH_AGENT', ssh_agent_bin.full_path())
+  conf.set_quoted('SSH_ADD', ssh_add_bin.full_path())
 endif
 conf.set('DOTLOCK_USE_PTHREAD', true)
 conf.set('DOTLOCK_GLIB_LOGGING', true)

@@ -17,6 +17,8 @@ libgkm_rpc_layer = library('gkm-rpc-layer',
   libgkm_rpc_layer_sources,
   dependencies: libgkm_rpc_layer_deps,
   include_directories: config_h_inc,
+  install: true,
+  install_dir: gkr_pkglibdir,
 )
 
 libgkm_rpc_layer_dep = declare_dependency(

@@ -18,6 +18,8 @@ libgkm_ssh_store = library('gkm-ssh-store',
   libgkm_ssh_store_sources,
   dependencies: libgkm_ssh_store_deps,
   include_directories: config_h_inc,
+  install: true,
+  install_dir: gkr_pkglibdir,
 )
 
 libgkm_ssh_store_dep = declare_dependency(

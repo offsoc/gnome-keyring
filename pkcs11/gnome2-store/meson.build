@@ -19,6 +19,8 @@ libgkm_gnome2_store = library('gkm-gnome2-store',
   libgkm_gnome2_store_sources,
   dependencies: libgkm_gnome2_store_deps,
   include_directories: config_h_inc,
+  install: true,
+  install_dir: gkr_pkglibdir,
 )
 
 libgkm_gnome2_store_dep = declare_dependency(

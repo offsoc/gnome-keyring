@@ -18,6 +18,8 @@ libgkm_xdg_store = library('gkm-xdg-store',
   libgkm_xdg_store_sources,
   dependencies: libgkm_xdg_store_deps,
   include_directories: config_h_inc,
+  install: true,
+  install_dir: gkr_pkglibdir,
 )
 
 libgkm_xdg_store_dep = declare_dependency(

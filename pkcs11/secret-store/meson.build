@@ -24,6 +24,8 @@ libgkm_secret_store = library('gkm-secret-store',
   libgkm_secret_store_sources,
   dependencies: libgkm_secret_store_deps,
   include_directories: config_h_inc,
+  install: true,
+  install_dir: gkr_pkglibdir,
 )
 
 libgkm_secret_store_dep = declare_dependency(
