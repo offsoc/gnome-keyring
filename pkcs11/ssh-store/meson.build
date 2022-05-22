@@ -14,8 +14,9 @@ libgkm_ssh_store_deps = [
   libgkm_dep,
 ]
 
-libgkm_ssh_store = library('gkm-ssh-store',
+libgkm_ssh_store = library('gkm-ssh-store-standalone',
   libgkm_ssh_store_sources,
+  name_prefix: '',
   dependencies: libgkm_ssh_store_deps,
   include_directories: config_h_inc,
   install: true,

@@ -59,9 +59,12 @@ libgkm_deps = [
 ]
 
 libgkm = library('gkm',
-  [ libgkm_sources, gkm_marshal, ],
+  name_prefix: '',
+  sources: [ libgkm_sources, gkm_marshal, ],
   dependencies: libgkm_deps,
   include_directories: config_h_inc,
+  install: true,
+  install_dir: gkr_pkglibdir,
 )
 
 libgkm_dep = declare_dependency(
@@ -90,7 +93,7 @@ libgkm_mock_cflags = [
 ]
 
 libgkm_mock = library('gkm-mock',
-  libgkm_mock_sources,
+  sources: libgkm_mock_sources,
   dependencies: libgkm_mock_deps,
   c_args: libgkm_mock_cflags,
   include_directories: config_h_inc,

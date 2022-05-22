@@ -15,8 +15,9 @@ libgkm_gnome2_store_deps = [
   libgkm_dep,
 ]
 
-libgkm_gnome2_store = library('gkm-gnome2-store',
+libgkm_gnome2_store = library('gkm-gnome2-store-standalone',
   libgkm_gnome2_store_sources,
+  name_prefix: '',
   dependencies: libgkm_gnome2_store_deps,
   include_directories: config_h_inc,
   install: true,

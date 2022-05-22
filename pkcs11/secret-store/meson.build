@@ -20,8 +20,9 @@ libgkm_secret_store_deps = [
   libgkm_dep,
 ]
 
-libgkm_secret_store = library('gkm-secret-store',
+libgkm_secret_store = library('gkm-secret-store-standalone',
   libgkm_secret_store_sources,
+  name_prefix: '',
   dependencies: libgkm_secret_store_deps,
   include_directories: config_h_inc,
   install: true,

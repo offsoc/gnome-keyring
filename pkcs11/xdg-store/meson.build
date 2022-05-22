@@ -14,8 +14,9 @@ libgkm_xdg_store_deps = [
   libgkm_dep,
 ]
 
-libgkm_xdg_store = library('gkm-xdg-store',
+libgkm_xdg_store = library('gkm-xdg-store-standalone',
   libgkm_xdg_store_sources,
+  name_prefix: '',
   dependencies: libgkm_xdg_store_deps,
   include_directories: config_h_inc,
   install: true,

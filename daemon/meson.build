@@ -48,6 +48,7 @@ gkr_daemon = executable('gnome-keyring-daemon',
   dependencies: gkr_daemon_deps,
   include_directories: config_h_inc,
   install: true,
+  install_rpath: gkr_pkglibdir,
 )
 
 # Desktop files
