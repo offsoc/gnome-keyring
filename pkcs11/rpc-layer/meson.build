@@ -35,6 +35,7 @@ if p11_module_path == ''
 endif
 shared_module(
   'gnome-keyring-pkcs11',
+  name_prefix: '',
   sources: [
     'gkm-rpc-module.c',
     'gkm-rpc-message.c',
