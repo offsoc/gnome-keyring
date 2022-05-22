@@ -58,13 +58,10 @@ libgkm_deps = [
   libegg_dep,
 ]
 
-libgkm = library('gkm',
-  name_prefix: '',
+libgkm = static_library('gkm',
   sources: [ libgkm_sources, gkm_marshal, ],
   dependencies: libgkm_deps,
   include_directories: config_h_inc,
-  install: true,
-  install_dir: gkr_pkglibdir,
 )
 
 libgkm_dep = declare_dependency(
