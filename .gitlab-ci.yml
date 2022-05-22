@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  DEPENDENCIES: dbus-x11 gcc gnome-common gtk-doc make openssh python redhat-rpm-config lcov libasan libubsan
+  DEPENDENCIES: dbus-x11 gcc gnome-common gtk-doc make openssh python redhat-rpm-config lcov libasan libubsan systemd-devel
 
 .build:
   stage: build
