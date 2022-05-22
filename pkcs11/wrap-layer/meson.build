@@ -14,7 +14,7 @@ libgkm_wrap_layer_deps = [
   libgkm_dep,
 ]
 
-libgkm_wrap_layer = static_library('gkm-wrap-layer-standalone',
+libgkm_wrap_layer = static_library('gkm-wrap-layer',
   sources: libgkm_wrap_layer_sources,
   dependencies: libgkm_wrap_layer_deps,
   include_directories: config_h_inc,
