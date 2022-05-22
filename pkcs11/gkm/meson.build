@@ -119,8 +119,9 @@ libgkm_tests_cflags = [
 ]
 
 foreach test_name : libgkm_tests
-  test_bin = executable(test_name,
-    '@0@.c'.format(test_name),
+  test_bin = executable(
+    test_name,
+    sources: f'@test_name@.c',
     dependencies: [ libgkm_dep, libgkm_deps ],
     link_with: libgkm_mock,
     c_args: libgkm_tests_cflags,
