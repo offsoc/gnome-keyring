@@ -19,6 +19,7 @@ libpam_gkr_cflags = [
 
 libpam_gkr = shared_library('pam_gnome_keyring',
   libpam_gkr_sources,
+  name_prefix: '',
   c_args: libpam_gkr_cflags,
   dependencies: libpam_gkr_deps,
   include_directories: config_h_inc,

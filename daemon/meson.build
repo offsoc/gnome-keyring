@@ -56,6 +56,8 @@ desktop_input_files = [
   'gnome-keyring-ssh.desktop.in.in',
 ]
 
+autostartdir = join_paths(get_option('sysconfdir'), 'xdg', 'autostart')
+
 foreach desktop_input_file : desktop_input_files
   i18n.merge_file(
     input: configure_file(
@@ -70,7 +72,7 @@ foreach desktop_input_file : desktop_input_files
     type: 'desktop',
     po_dir: po_dir,
     install: true,
-    install_dir: get_option('datadir') / 'applications',
+    install_dir: autostartdir,
   )
 endforeach
 

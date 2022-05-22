@@ -1,17 +1,18 @@
 project('gnome-keyring', 'c',
-  version: '3.34.0',
-  meson_version: '>= 0.49',
+  version: '42.0',
+  meson_version: '>= 0.61',
 )
 
 gnome = import('gnome')
 i18n = import('i18n')
 
 # Version
-gkr_major_version = meson.project_version().split('.')[0]
+gkr_major_version = '3'
 
 # Common variables
 cc = meson.get_compiler('c')
 gkr_prefix = get_option('prefix')
+gkr_bindir = gkr_prefix / get_option('bindir')
 config_h_inc = include_directories('.')
 po_dir = meson.current_source_dir() / 'po'
 source_root = meson.current_source_dir()
@@ -25,13 +26,13 @@ gmodule_dep = dependency('gmodule-no-export-2.0')
 gobject_dep = dependency('gobject-2.0')
 threads_dep = dependency('threads')
 gck_dep = dependency('gck-1', version: '>= 3.3.4')
-gcr_ui_dep = dependency('gcr-ui-3', version: '>= 3.5.3')
-gcr_base_dep = dependency('gcr-base-3', version: '>= 3.5.3')
+gcr_dep = dependency('gcr-3', version: '>= 3.27.90')
+gcr_base_dep = dependency('gcr-base-3', version: '>= 3.27.90')
 libgcrypt_dep = dependency('libgcrypt', version: '>= 1.2.2')
 libcap_ng_dep = dependency('libcap-ng', required: false)
 p11_kit_dep = dependency('p11-kit-1')
 
-selinux_dep = dependency('selinux', required: get_option('selinux'))
+selinux_dep = dependency('libselinux', required: get_option('selinux'))
 
 if get_option('ssh-agent')
   ssh_agent_bin = find_program('ssh-agent')
@@ -101,3 +102,7 @@ if get_option('pam')
   subdir('pam')
 endif
 subdir('docs')
+
+gnome.post_install(
+  glib_compile_schemas: true,
+)
