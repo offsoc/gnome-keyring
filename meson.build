@@ -37,7 +37,7 @@ libselinux_dep = dependency('libselinux', required: get_option('selinux'))
 libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
 
 if libsystemd_dep.found()
-  systemd_user_unit_dir = dependency('systemd').get_variable('systemduserunitdir', pkgconfig_define: ['root_prefix', get_option('prefix')])
+  systemd_user_unit_dir = dependency('systemd').get_variable('systemduserunitdir', pkgconfig_define: ['prefix', gkr_prefix])
 endif
 
 if get_option('ssh-agent')

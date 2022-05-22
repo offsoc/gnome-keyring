@@ -25,6 +25,27 @@ libgkm_rpc_layer_dep = declare_dependency(
   link_with: libgkm_rpc_layer,
 )
 
+# The module code, built as the public gnome-keyring module
+
+# This is the location that some older software looks for modules
+p11_module_path = get_option('pkcs11-modules')
+if p11_module_path == ''
+  p11_module_path = p11_kit_dep.get_pkgconfig_variable('p11_module_path')
+endif
+shared_module(
+  'gnome-keyring-pkcs11',
+  sources: [
+    'gkm-rpc-module.c',
+    'gkm-rpc-message.c',
+    'gkm-rpc-util.c',
+  ],
+  dependencies: [
+    libegg_dep
+  ],
+  install: true,
+  install_dir: p11_module_path,
+)
+
 # This is the configuration file that p11-kit uses to load the module
 p11_system_config_module = get_option('pkcs11-config')
 if p11_system_config_module == ''

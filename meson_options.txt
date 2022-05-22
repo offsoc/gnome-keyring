@@ -28,6 +28,12 @@ option('pkcs11-config',
   description: 'Directory to install PKCS#11 config (if empty, the default value for p11-kit will be used)',
 )
 
+option('pkcs11-modules',
+  type: 'string',
+  value: '',
+  description: 'Directory to install PKCS#11 modules (if empty, the default value for p11-kit will be used)',
+)
+
 option('manpage',
   type: 'boolean',
   value: true,
