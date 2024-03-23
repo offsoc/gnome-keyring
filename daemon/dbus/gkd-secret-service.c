@@ -158,6 +158,7 @@ get_default_path (void)
 	gchar *old_directory;
 	gchar *new_directory;
 	gchar *alias_directory = NULL;
+	gchar *ret = NULL;
 
 #if WITH_DEBUG
 	const gchar *path = g_getenv ("GNOME_KEYRING_TEST_PATH");
@@ -185,7 +186,10 @@ get_default_path (void)
 		g_debug ("keyring alias directory: %s", alias_directory);
 	}
 
-	return g_build_filename (alias_directory, "default", NULL);
+	ret = g_build_filename (alias_directory, "default", NULL);
+	g_free (alias_directory);
+
+	return ret;
 }
 
 static void
@@ -608,6 +612,7 @@ service_method_lock (GkdExportedService *skeleton,
 	locked = (gchar **) g_ptr_array_free (array, FALSE);
 	gkd_exported_service_complete_lock (skeleton, invocation,
 					    (const gchar **) locked, "/");
+	g_free (locked);
 
 	return TRUE;
 }

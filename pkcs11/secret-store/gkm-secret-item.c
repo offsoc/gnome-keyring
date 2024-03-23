@@ -136,7 +136,7 @@ factory_create_item (GkmSession *session, GkmTransaction *transaction,
 	GkmManager *s_manager;
 	CK_ATTRIBUTE *attr;
 	gboolean is_token;
-	gchar *identifier;
+	gchar *identifier = NULL;
 
 	g_return_val_if_fail (GKM_IS_TRANSACTION (transaction), NULL);
 	g_return_val_if_fail (attrs || !n_attrs, NULL);
@@ -167,6 +167,7 @@ factory_create_item (GkmSession *session, GkmTransaction *transaction,
 	/* If an ID was specified, then try and see if that ID already exists */
 	if (gkm_attributes_find_string (attrs, n_attrs, CKA_ID, &identifier)) {
 		item = gkm_secret_collection_get_item (collection, identifier);
+		g_free (identifier);
 		if (item == NULL) {
 			gkm_transaction_fail (transaction, CKR_TEMPLATE_INCONSISTENT);
 			return NULL;

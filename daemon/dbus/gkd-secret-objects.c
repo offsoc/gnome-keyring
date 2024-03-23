@@ -788,7 +788,7 @@ collection_method_create_item (GkdExportedCollection *skeleton,
 	const gchar *base;
 	GError *error = NULL;
 	gchar *path = NULL;
-	gchar *identifier;
+	gchar *identifier = NULL;
 	gboolean created = FALSE;
 	GckObject *object;
 
@@ -879,6 +879,7 @@ cleanup:
 		g_object_unref (pkcs11_session);
 	g_free (path);
 	g_object_unref (object);
+	g_free (identifier);
 
 	return TRUE;
 }
